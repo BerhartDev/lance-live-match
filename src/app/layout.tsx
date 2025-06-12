@@ -1,4 +1,6 @@
+import type { Metadata } from 'next'
 import "./globals.css";
+import { ThemeProvider } from '@/theme/ThemeProvider'
 
 export const metadata: Metadata = {
   title: "Live Match MVP",
@@ -12,7 +14,7 @@ export default function RootLayout({
 }) {
   return <html lang="pt-BR">
     <body>
-      {children}
+    <ThemeProvider>{children}</ThemeProvider>
     </body>
   </html>;
 }
