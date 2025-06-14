@@ -1,34 +1,77 @@
 'use client';
 
-import { useNarrationStore } from '@/app/store/narrationStore';
-import type { Narration } from '@/types/narration';
+import { useState } from 'react';
+import { useFilteredEvents, MatchPeriodFilter, ActionTypeFilter } from '@/app/hooks/useFilteredEvents';
 
 export default function EventList() {
-  const narrations = useNarrationStore((state) => state.narrations || []);
+  const [selectedPeriod, setSelectedPeriod] = useState<MatchPeriodFilter>('all');
+  const [selectedAction, setSelectedAction] = useState<ActionTypeFilter>('all');
 
-  if (!narrations.length) {
-    return <div> Nenhum evento disponível no momento.</div>;
-  }
+  const filteredEvents = useFilteredEvents(selectedPeriod, selectedAction);
+
+  const periodFilters: { id: MatchPeriodFilter; label: string }[] = [
+    { id: 'all', label: 'Todos os Períodos' },
+    { id: 'pre_jogo', label: 'Pré-Jogo' },
+    { id: 'primeiro_tempo', label: '1º Tempo' },
+    { id: 'intervalo', label: 'Intervalo' },
+    { id: 'segundo_tempo', label: '2º Tempo' },
+  ];
+
+  const actionFilters: { id: ActionTypeFilter; label: string }[] = [
+    { id: 'all', label: 'Todas Ações' },
+    { id: 'gol', label: 'Gols' },
+    { id: 'cartao', label: 'Cartões' },
+    { id: 'impedimento', label: 'Impedimentos' },
+    { id: 'penalti', label: 'Pênaltis' },
+  ];
 
   return (
-    <div className="p-4 dark:text-white">
-      <h2 className="text-lg font-bold mb-2">📰 Lista de Eventos</h2>
+    <div className="p-4 border rounded bg-white">
+      <h2 className="text-lg font-bold mb-2">📰 Eventos Filtrados</h2>
 
-      <ul className="space-y-2">
-        {narrations.map((event: Narration) => (
-          <li key={event.id} className="border-b pb-2">
-            <div className="text-sm text-gray-500">{event.moment}&apos; - Período: {event.match_period_id}</div>
-            <div className={event.important_action ? 'font-bold text-red-600' : ''}>
-              {event.important_action && (
-                <span className="mr-2 bg-red-100 text-red-800 px-2 py-0.5 rounded text-xs">
-                  {event.important_action}
-                </span>
-              )}
-              {event.text}
-            </div>
-          </li>
+      {/* Filtros de Período */}
+      <div className="mb-2 flex flex-wrap gap-2">
+        {periodFilters.map((filter) => (
+          <button
+            key={filter.id}
+            onClick={() => setSelectedPeriod(filter.id)}
+            className={`px-3 py-1 rounded text-sm ${
+              selectedPeriod === filter.id ? 'bg-purple-600 text-white' : 'bg-gray-100 hover:bg-gray-200'
+            }`}
+          >
+            {filter.label}
+          </button>
         ))}
-      </ul>
+      </div>
+
+      {/* Filtros de Ação */}
+      <div className="mb-4 flex flex-wrap gap-2">
+        {actionFilters.map((filter) => (
+          <button
+            key={filter.id}
+            onClick={() => setSelectedAction(filter.id)}
+            className={`px-3 py-1 rounded text-sm ${
+              selectedAction === filter.id ? 'bg-orange-500 text-white' : 'bg-gray-100 hover:bg-gray-200'
+            }`}
+          >
+            {filter.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Lista de Eventos */}
+      {filteredEvents.length > 0 ? (
+        <ul className="space-y-2">
+          {filteredEvents.map((event) => (
+            <li key={event.id} className="border-b pb-1">
+              <span className="text-sm text-gray-500">{event.moment}' </span>
+              <span>{event.text}</span>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div className="text-sm text-gray-500">Nenhum evento encontrado para este filtro.</div>
+      )}
     </div>
   );
 }
