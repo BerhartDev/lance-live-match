@@ -17,7 +17,7 @@ export default function EventList() {
       <ul className="space-y-2">
         {narrations.map((event: Narration) => (
           <li key={event.id} className="border-b pb-2">
-            <div className="text-sm text-gray-500">{event.moment}' - Período: {event.match_period_id}</div>
+            <div className="text-sm text-gray-500">{event.moment}&apos - Período: {event.match_period_id}</div>
             <div className={event.important_action ? 'font-bold text-red-600' : ''}>
               {event.important_action && (
                 <span className="mr-2 bg-red-100 text-red-800 px-2 py-0.5 rounded text-xs">
