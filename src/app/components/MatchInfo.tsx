@@ -1,7 +1,7 @@
 'use client';
 
 import { useMatchStore } from '@/app/store/matchStore';
-import Image from 'next/image';
+{/* import Image from 'next/image'; */}
 
 export default function MatchInfo() {
   const match = useMatchStore((state) => state.match);
@@ -16,14 +16,14 @@ export default function MatchInfo() {
 
       <div className="flex items-center gap-4 mb-2">
         <div className="flex flex-col items-center">
-          <Image src={match.team_a.logo} alt={match.team_a.name} className="w-12 h-12" />
+          {/*<Image src={match.team_a.logo} alt={match.team_a.name} className="w-12 h-12" />*/}
           <span className="text-sm">{match.team_a.name}</span>
         </div>
 
         <span className="text-lg font-semibold">vs</span>
 
         <div className="flex flex-col items-center">
-          <Image src={match.team_b.logo} alt={match.team_b.name} className="w-12 h-12" />
+          {/*<Image src={match.team_b.logo} alt={match.team_b.name} className="w-12 h-12" />*/}
           <span className="text-sm">{match.team_b.name}</span>
         </div>
       </div>
