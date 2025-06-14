@@ -1,14 +1,27 @@
 import { useNarrationStore } from '@/app/store/narrationStore';
+import { useClockStore } from '@/app/store/clockStore';
 import type { Narration } from '@/types/narration';
 
 export type MatchPeriodFilter = 'all' | 'pre_jogo' | 'primeiro_tempo' | 'intervalo' | 'segundo_tempo';
 export type ActionTypeFilter = 'all' | 'gol' | 'cartao' | 'impedimento' | 'penalti';
 
-export const useFilteredEvents = (selectedPeriod: MatchPeriodFilter, selectedAction: ActionTypeFilter): Narration[] => {
+export const useFilteredEvents = (
+  selectedPeriod: MatchPeriodFilter,
+  selectedAction: ActionTypeFilter
+): Narration[] => {
   const narrations = useNarrationStore((state) => state.narrations || []);
+  const currentMinute = useClockStore((state) => state.currentMinute);
+  const currentPeriod = useClockStore((state) => state.currentPeriod);
 
   let filtered = narrations;
 
+  // Filtro por período atual do clock
+  filtered = filtered.filter((event) => event.match_period_id === currentPeriod);
+
+  // Filtro por tempo (somente eventos até o minuto atual)
+  filtered = filtered.filter((event) => event.moment <= currentMinute);
+
+  // Filtro por período manual (se o usuário quiser filtrar por período específico)
   if (selectedPeriod !== 'all') {
     const periodMap: Record<MatchPeriodFilter, number> = {
       all: 0,
@@ -17,13 +30,14 @@ export const useFilteredEvents = (selectedPeriod: MatchPeriodFilter, selectedAct
       intervalo: 3,
       segundo_tempo: 4,
     };
-    filtered = filtered.filter((n) => n.match_period_id === periodMap[selectedPeriod]);
+    filtered = filtered.filter((event) => event.match_period_id === periodMap[selectedPeriod]);
   }
 
+  // Filtro por tipo de ação
   if (selectedAction !== 'all') {
-    filtered = filtered.filter((n) => {
-      if (!n.important_action) return false;
-      const action = n.important_action.toLowerCase();
+    filtered = filtered.filter((event) => {
+      if (!event.important_action) return false;
+      const action = event.important_action.toLowerCase();
       switch (selectedAction) {
         case 'gol':
           return action.includes('gol');

@@ -4,7 +4,7 @@ import { useClockStore } from '@/app/store/clockStore';
 
 export default function ReplayControls() {
   const status = useClockStore((state) => state.status);
-  const startClock = useClockStore((state) => state.startClock);
+  const startFirstHalf = useClockStore((state) => state.startFirstHalf);
   const stopClock = useClockStore((state) => state.stopClock);
   const resetClock = useClockStore((state) => state.resetClock);
 
@@ -12,7 +12,7 @@ export default function ReplayControls() {
     <div className="flex gap-2">
       {status !== 'running' && (
         <button
-          onClick={startClock}
+          onClick={startFirstHalf}
           className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
         >
           ▶️ Iniciar

@@ -5,8 +5,6 @@ import { useMatchStore } from '@/app/store/matchStore';
 
 export default function MatchInfo() {
   const match = useMatchStore((state) => state.match);
-  
-  console.log('Match data:', match);
 
   if (!match) return <div> Carregando informações da partida...</div>;
 

@@ -62,7 +62,9 @@ export default function EventList() {
       {/* Lista de Eventos */}
       {filteredEvents.length > 0 ? (
         <ul className="space-y-2">
-          {filteredEvents.map((event) => (
+          {filteredEvents
+          .sort((a,b) => b.moment - a.moment)
+          .map((event) => (
             <li key={event.id} className="border-b pb-1">
               <span className="text-sm text-gray-500">{event.moment}' </span>
               <span>{event.text}</span>

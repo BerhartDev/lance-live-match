@@ -8,6 +8,8 @@ type ClockStore = {
   currentPeriod: number; // Ex: 1=Pré, 2=1ºT, 3=Intervalo, 4=2ºT, etc.
   status: MatchStatus;
   startClock: () => void;
+  startFirstHalf: () => void;
+  startSecondHalf: () => void;
   stopClock: () => void;
   resetClock: () => void;
   advanceMinute: () => void;
@@ -16,45 +18,53 @@ type ClockStore = {
 };
 
 export const useClockStore = create<ClockStore>()(
-  persist(
-    (set, get) => ({
-      currentMinute: 0,
-      currentPeriod: 1,
-      status: 'not_started',
-
-      startClock: () => {
-        set({ status: 'running' });
-      },
-
-      stopClock: () => {
-        set({ status: 'paused' });
-      },
-
-      resetClock: () => {
-        set({ currentMinute: 0, currentPeriod: 1, status: 'not_started' });
-      },
-
-      advanceMinute: () => {
-        if (get().status === 'running') {
-          set((state) => {
-            console.log('Minuto avançado! Novo minuto:', state.currentMinute + 1);
-            return { currentMinute: state.currentMinute + 1 };
+    persist(
+      (set, get) => ({
+        currentMinute: 0,
+        currentPeriod: 2, // Começa direto no Primeiro Tempo
+        status: 'not_started',
+  
+        // ✅ Novo método: Iniciar o 1º tempo
+        startFirstHalf: () => {
+          set({
+            currentPeriod: 2, // Primeiro Tempo
+            currentMinute: 0,
+            status: 'running',
           });
-        }
-      },
-
-      setPeriod: (period) => set({ currentPeriod: period }),
-
-      setStatus: (status) => set({ status }),
-      
-    }),
-    {
-      name: 'clock-storage',
-      partialize: (state) => ({
-        currentMinute: state.currentMinute,
-        currentPeriod: state.currentPeriod,
-        status: state.status,
+        },
+  
+        // ✅ Novo método: Iniciar o 2º tempo
+        startSecondHalf: () => {
+          set({
+            currentPeriod: 4, // Segundo Tempo
+            currentMinute: 0,
+            status: 'running',
+          });
+        },
+  
+        startClock: () => set({ status: 'running' }),
+  
+        stopClock: () => set({ status: 'paused' }),
+  
+        resetClock: () => set({ currentMinute: 0, status:'paused' }),
+  
+        advanceMinute: () => {
+          if (get().status === 'running') {
+            set((state) => ({ currentMinute: state.currentMinute + 1 }));
+          }
+        },
+  
+        setPeriod: (period) => set({ currentPeriod: period }),
+  
+        setStatus: (status) => set({ status }),
       }),
-    }
-  )
-);
+      {
+        name: 'clock-storage',
+        partialize: (state) => ({
+          currentMinute: state.currentMinute,
+          currentPeriod: state.currentPeriod,
+          status: state.status,
+        }),
+      }
+    )
+  );
