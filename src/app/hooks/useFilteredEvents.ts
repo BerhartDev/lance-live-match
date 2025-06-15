@@ -15,8 +15,6 @@ export const useFilteredEvents = (
 
   let filtered = narrations;
 
-  console.log('File: useFilteredEvents', 'minute: ', currentMinute, 'period: ', currentPeriod);
-
   // Filtro por período e tempo
   filtered = filtered.filter((event) => {
     // Se o evento é de um período anterior ao atual, mostra todos os eventos

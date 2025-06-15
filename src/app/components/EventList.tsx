@@ -141,7 +141,7 @@ export default function EventList() {
                       }`}
                     >
                       <div className="flex items-center gap-2">
-                        <span className="text-sm text-gray-500 dark:text-gray-400">{event.moment}'</span>
+                        <span className="text-sm text-gray-500 dark:text-gray-400">{event.moment}&apos;</span>
                         {actionInfo && (
                           <span className="px-2 py-0.5 text-xs rounded bg-orange-100 dark:bg-orange-800/30 text-orange-800 dark:text-orange-200">
                             {actionInfo.emoji} {actionInfo.label}
