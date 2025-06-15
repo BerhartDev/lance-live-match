@@ -9,6 +9,35 @@ export default function EventList() {
 
   const filteredEvents = useFilteredEvents(selectedPeriod, selectedAction);
 
+  // Função para agrupar eventos por período
+  const groupEventsByPeriod = (events: typeof filteredEvents) => {
+    const groups = events.reduce((acc, event) => {
+      const period = event.match_period_id;
+      if (!acc[period]) {
+        acc[period] = [];
+      }
+      acc[period].push(event);
+      return acc;
+    }, {} as Record<number, typeof filteredEvents>);
+
+    return Object.entries(groups).sort(([a], [b]) => Number(b) - Number(a));
+  };
+
+  const getPeriodLabel = (period: number) => {
+    switch (period) {
+      case 1:
+        return '🟡 Pré-jogo';
+      case 2:
+        return '🔴 Primeiro Tempo';
+      case 3:
+        return '⚪ Intervalo';
+      case 4:
+        return '🔵 Segundo Tempo';
+      default:
+        return '🏁 Encerrado';
+    }
+  };
+
   const periodFilters: { id: MatchPeriodFilter; label: string }[] = [
     { id: 'all', label: 'Todos os Períodos' },
     { id: 'pre_jogo', label: 'Pré-Jogo' },
@@ -26,8 +55,8 @@ export default function EventList() {
   ];
 
   return (
-    <div className="p-4 border rounded bg-white">
-      <h2 className="text-lg font-bold mb-2">📰 Eventos Filtrados</h2>
+    <div className="p-4 border rounded bg-white dark:bg-zinc-900">
+      <h2 className="text-lg font-bold mb-2 dark:text-white">📰 Eventos Filtrados</h2>
 
       {/* Filtros de Período */}
       <div className="mb-2 flex flex-wrap gap-2">
@@ -59,22 +88,27 @@ export default function EventList() {
         ))}
       </div>
 
-      {/* Lista de Eventos */}
+      {/* Lista de Eventos Agrupados */}
       {filteredEvents.length > 0 ? (
-        <ul className="space-y-2">
-          {filteredEvents
-          .map((event) => {
-            console.log('File: EventList', 'event:', event.moment, 'period:', event.match_period_id);
-            return (
-              <li key={event.id} className="border-b pb-1">
-                <span className="text-sm text-gray-500">{event.moment}' </span>
-                <span>{event.text}</span>
-              </li>
-            );
-          })}
-        </ul>
+        <div className="space-y-6">
+          {groupEventsByPeriod(filteredEvents).map(([period, events]) => (
+            <div key={period} className="space-y-2">
+              <h3 className="text-md font-semibold text-gray-700 dark:text-gray-300 border-b pb-1">
+                {getPeriodLabel(Number(period))}
+              </h3>
+              <ul className="space-y-2">
+                {events.map((event) => (
+                  <li key={event.id} className="border-b pb-1 dark:text-white">
+                    <span className="text-sm text-gray-500 dark:text-gray-400">{event.moment}' </span>
+                    <span>{event.text}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       ) : (
-        <div className="text-sm text-gray-500">Nenhum evento encontrado para este filtro.</div>
+        <div className="text-sm text-gray-500 dark:text-gray-400">Nenhum evento encontrado para este filtro.</div>
       )}
     </div>
   );
