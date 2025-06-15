@@ -64,12 +64,15 @@ export default function EventList() {
         <ul className="space-y-2">
           {filteredEvents
           .sort((a,b) => b.moment - a.moment)
-          .map((event) => (
-            <li key={event.id} className="border-b pb-1">
-              <span className="text-sm text-gray-500">{event.moment}' </span>
-              <span>{event.text}</span>
-            </li>
-          ))}
+          .map((event) => {
+            console.log('File: EventList', 'event:', event.moment, 'period:', event.match_period_id);
+            return (
+              <li key={event.id} className="border-b pb-1">
+                <span className="text-sm text-gray-500">{event.moment}' </span>
+                <span>{event.text}</span>
+              </li>
+            );
+          })}
         </ul>
       ) : (
         <div className="text-sm text-gray-500">Nenhum evento encontrado para este filtro.</div>

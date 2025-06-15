@@ -21,7 +21,7 @@ export const useClockStore = create<ClockStore>()(
     persist(
       (set, get) => ({
         currentMinute: 0,
-        currentPeriod: 2, // Começa direto no Primeiro Tempo
+        currentPeriod: 1, // Começa direto no Primeiro Tempo
         status: 'not_started',
   
         // ✅ Novo método: Iniciar o 1º tempo
@@ -46,7 +46,7 @@ export const useClockStore = create<ClockStore>()(
   
         stopClock: () => set({ status: 'paused' }),
   
-        resetClock: () => set({ currentMinute: 0, status:'paused' }),
+        resetClock: () => set({ status:'paused', currentMinute: 0, currentPeriod: 1 }),
   
         advanceMinute: () => {
           if (get().status === 'running') {

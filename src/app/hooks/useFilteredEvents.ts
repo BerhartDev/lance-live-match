@@ -15,7 +15,7 @@ export const useFilteredEvents = (
 
   let filtered = narrations;
 
-  // Filtro por período atual do clock
+  console.log('File: useFilteredEvents', 'minute: ', currentMinute, 'period: ', currentPeriod )
   filtered = filtered.filter((event) => event.match_period_id === currentPeriod);
 
   // Filtro por tempo (somente eventos até o minuto atual)

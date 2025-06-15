@@ -37,6 +37,7 @@ export const useMatchClock = () => {
 
   useEffect(() => {
     if (status !== 'running') return;
+    console.log('File: UseMatchClock', 'minute: ', currentMinute, 'period: ', currentPeriod )
 
     const interval = setInterval(() => {
       advanceMinute();
@@ -48,8 +49,7 @@ export const useMatchClock = () => {
         if (currentMinute >= lastMomentPeriod2) {
           console.log('🏁 Fim do Primeiro Tempo. Iniciando o Segundo Tempo.');
           setPeriod(4); // Segundo Tempo
-          resetClock();
-          setStatus('running')
+          setStatus('running');
           return;
         }
       }
