@@ -18,12 +18,14 @@ export const useFetchMatch = () => {
           team_a: {
             id: data.match.team_a.id,
             name: data.match.team_a.name,
+            initials: data.match.team_a.initials,
             logo: data.match.team_a.logo,
             coach: data.match.team_a.coach,
           },
           team_b: {
             id: data.match.team_b.id,
             name: data.match.team_b.name,
+            initials: data.match.team_b.initials,
             logo: data.match.team_b.logo,
             coach: data.match.team_b.coach,
           },

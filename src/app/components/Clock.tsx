@@ -29,11 +29,11 @@ export default function Clock() {
   };
 
   return (
-    <div className="p-3 border rounded bg-gray-50 flex flex-col gap-1 w-fit">
-      <div className="text-sm text-gray-700 font-semibold">
+    <div className="p-3 bg-gray-5 flex flex-col gap-1 w-fit dark:bg-zinc-900">
+      <div className="text-sm text-gray-700 font-semibold dark:text-white">
         Período: {getPeriodLabel(currentPeriod)}
       </div>
-      <div className="text-xl font-bold text-black">
+      <div className="text-xl font-bold text-black dark:text-white">
         {formatMatchTime(currentMinute)}
       </div>
       <div className={`text-xs font-medium ${status === 'running' ? 'text-green-600' : 'text-gray-500'}`}>
