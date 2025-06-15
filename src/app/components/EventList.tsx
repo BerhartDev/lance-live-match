@@ -63,7 +63,6 @@ export default function EventList() {
       {filteredEvents.length > 0 ? (
         <ul className="space-y-2">
           {filteredEvents
-          .sort((a,b) => b.moment - a.moment)
           .map((event) => {
             console.log('File: EventList', 'event:', event.moment, 'period:', event.match_period_id);
             return (

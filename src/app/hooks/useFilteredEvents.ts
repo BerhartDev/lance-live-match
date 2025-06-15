@@ -15,11 +15,31 @@ export const useFilteredEvents = (
 
   let filtered = narrations;
 
-  console.log('File: useFilteredEvents', 'minute: ', currentMinute, 'period: ', currentPeriod )
-  filtered = filtered.filter((event) => event.match_period_id === currentPeriod);
+  console.log('File: useFilteredEvents', 'minute: ', currentMinute, 'period: ', currentPeriod);
 
-  // Filtro por tempo (somente eventos até o minuto atual)
-  filtered = filtered.filter((event) => event.moment <= currentMinute);
+  // Filtro por período e tempo
+  filtered = filtered.filter((event) => {
+    // Se o evento é de um período anterior ao atual, mostra todos os eventos
+    if (event.match_period_id < currentPeriod) {
+      return true;
+    }
+    // Se o evento é do período atual, filtra pelo minuto atual
+    if (event.match_period_id === currentPeriod) {
+      return event.moment <= currentMinute;
+    }
+    // Não mostra eventos de períodos futuros
+    return false;
+  });
+
+  // Ordena os eventos por período e momento
+  filtered.sort((a, b) => {
+    // Primeiro ordena por período (invertido)
+    if (a.match_period_id !== b.match_period_id) {
+      return b.match_period_id - a.match_period_id;
+    }
+    // Se for o mesmo período, ordena por momento (invertido)
+    return b.moment - a.moment;
+  });
 
   // Filtro por período manual (se o usuário quiser filtrar por período específico)
   if (selectedPeriod !== 'all') {

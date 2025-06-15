@@ -41,13 +41,13 @@ export const useMatchClock = () => {
 
     const interval = setInterval(() => {
       advanceMinute();
-      console.log(currentPeriod)
   
       if (currentPeriod === 2) {
         const lastMomentPeriod2 = getLastMomentForPeriod(2);
         console.log(lastMomentPeriod2)
         if (currentMinute >= lastMomentPeriod2) {
           console.log('🏁 Fim do Primeiro Tempo. Iniciando o Segundo Tempo.');
+          resetClock();
           setPeriod(4); // Segundo Tempo
           setStatus('running');
           return;
