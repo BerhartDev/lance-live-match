@@ -1,6 +1,8 @@
 'use client';
 
 import { useClockStore } from '@/app/store/clockStore';
+import { useScoreStore } from '../store/scoreStore';
+import { useProcessedEventsStore } from '../store/processedEventsStore';
 
 export default function ReplayControls() {
   const status = useClockStore((state) => state.status);
@@ -9,6 +11,8 @@ export default function ReplayControls() {
   const startClock = useClockStore((state) => state.startClock);
   const stopClock = useClockStore((state) => state.stopClock);
   const resetClock = useClockStore((state) => state.resetClock);
+  const resetScore = useScoreStore((state) => state.resetScore);
+  const resetProcessed = useProcessedEventsStore((state) => state.resetProcessed);
 
   const handlePlay = () => {
     if (currentPeriod === 1) {
@@ -39,7 +43,7 @@ export default function ReplayControls() {
       )}
 
       <button
-        onClick={resetClock}
+        onClick={() => { resetClock(); resetScore(); resetProcessed();}}
         className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
       >
         🔄 Resetar
