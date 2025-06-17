@@ -11,6 +11,7 @@ export const useProcessImportantEvents = () => {
   const currentMinute = useClockStore((state) => state.currentMinute);
   const currentPeriod = useClockStore((state) => state.currentPeriod);
   const narrations = useNarrationStore((state) => state.narrations || []);
+  const team_name = useMatchStore((state) => state.match?.team_name);
 
   const addGoal = useScoreStore((state) => state.addGoal);
   const { processedIds, markAsProcessed } = useProcessedEventsStore();
@@ -25,7 +26,7 @@ export const useProcessImportantEvents = () => {
 
     visibleEvents.forEach((event) => {
       if (event.important_action?.toLowerCase() === 'gol') {
-        const isHomeGoal = event.text.toLowerCase().includes('flamengo'); // Ajuste seu critério
+        const isHomeGoal = event.text.toLowerCase().includes(team_name); // Ajuste seu critério
         addGoal(isHomeGoal ? 'home' : 'away');
       }
 
