@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/next"
 import { Krub, Poppins } from 'next/font/google';
 import "./globals.css";
 import { ThemeProvider } from '@/theme/ThemeProvider'
+import type { Metadata } from 'next';
 
 const krub = Krub({
   subsets: ['latin'],
