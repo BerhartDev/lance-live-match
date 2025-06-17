@@ -17,9 +17,29 @@ const poppins = Poppins({
   variable: '--font-poppins',
 });
 
-export const metadata: Metadata = {
-  title: "Live Match MVP",
-  description: "Cobertura ao vivo de futebol",
+export const metadata = {
+  title: 'Tempo Real - Partidas LANCE! a LANCE!',
+  description: 'Veja o replay lance a lance de partidas de futebol no Tempo Real LANCE!',
+  openGraph: {
+    title: 'Tempo Real - Partidas LANCE! a LANCE!',
+    description: 'Veja o replay lance a lance de partidas de futebol no Tempo Real LANCE!',
+    url: 'https://lance-live-match.vercel.app/',
+    images: [
+      {
+        url: '/logo-white.svg',
+        width: 1200,
+        height: 630,
+        alt: 'Logo LANCE!',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Tempo Real - Partidas LANCE! a LANCE!',
+    description: 'Veja o replay lance a lance de partidas de futebol no Tempo Real LANCE!',
+    images: ['/logo-white.svg'],
+  },
 };
 
 export default function RootLayout({
