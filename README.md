@@ -139,6 +139,7 @@ src/
 - [ ] Lazy load de componentes pesados
 - [ ] Code splitting por rotas (quando implementar múltiplas partidas)
 - [ ] Otimização de imports
+- [ ] Muitas outras
 ---
 
 ##  💻 Sobre o desenvolvimento.
@@ -163,14 +164,14 @@ Este projeto em particular foi desenvolvido totalmente fora da zona de conforto,
 Testei cada parte individualmente, ajustando a UX e a performance.
 Refatorei componentes para melhor legibilidade e reuso.
 
-![Tela principal do projeto](./public/lighthouse.png)
+![Lighthouse Performance](./public/lighthouse.png)
 
 
 ![Vercel Speed Insight](./public/vercel-speedinsight.png)
 
 ---
 
-## 🚨 Documentação em breve!
+## 🚨 Documentação no Notion em breve!
 
 A documentação detalhada deste projeto será publicada em breve.
 
