@@ -17,14 +17,12 @@ export const useMatchClock = () => {
   const narrations = useNarrationStore((state) => state.narrations || []);
 
   useEffect(() => {
-    // Função para pegar o último momento de um período
     const getLastMomentForPeriod = (period: number) => {
       const events = narrations.filter((n) => n.match_period_id === period);
       if (!events.length) return 0;
       return Math.max(...events.map((e) => e.moment));
     };
 
-    // Função para verificar se é fim de jogo
     const isEndOfGame = () => {
       const lastEventPeriod4 = narrations
         .filter(
@@ -48,7 +46,6 @@ export const useMatchClock = () => {
         const lastMomentPeriod2 = getLastMomentForPeriod(2);
 
         if (currentMinute >= lastMomentPeriod2) {
-          console.log('🏁 Fim do Primeiro Tempo. Iniciando o Segundo Tempo.');
           resetClock();
           setPeriod(4); // Segundo Tempo
           setStatus('running')
@@ -57,7 +54,7 @@ export const useMatchClock = () => {
       }
 
       if (isEndOfGame()) {
-        console.log('🏁 Fim de Jogo detectado. Parando o clock.');
+        resetClock();
         setPeriod(5)
         setStatus('finished');
         clearInterval(interval);

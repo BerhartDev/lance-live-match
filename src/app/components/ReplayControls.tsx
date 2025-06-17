@@ -15,6 +15,11 @@ export default function ReplayControls() {
   const resetProcessed = useProcessedEventsStore((state) => state.resetProcessed);
 
   const handlePlay = () => {
+    if (currentPeriod === 5) {
+      resetClock();
+      startFirstHalf();
+      return;
+    }
     if (currentPeriod === 1) {
       startFirstHalf(); // Inicia o primeiro tempo se estiver no pré-jogo
     } else {
