@@ -1,36 +1,177 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⚽ Lance! a Lance! 
 
-## Getting Started
+Ferramenta web de cobertura ao vivo de uma partida de futebol, no estilo "lance a lance", desenvolvida como desafio técnico para simular a experiência de um portal esportivo.
 
-First, run the development server:
+---
+
+## 🎯 Objetivo
+
+Entregar um MVP funcional de uma página de cobertura ao vivo, com foco em:
+- Performance
+- Organização de código
+- Experiência do usuário (UX)
+- Uso inteligente de Next.js + TypeScript
+
+---
+## 🛠️ Tecnologias Utilizadas
+
+- **Framework:** [Next.js](https://nextjs.org/) (App Router)
+- **Linguagem:** TypeScript
+- **Estilo:** TailwindCSS
+- **Gerenciamento de estado:** Zustand (justificativa: leve, simples e ideal para apps com múltiplos estados reativos)
+- **Persistência local:** localStorage via middleware do Zustand (para manter placar e progresso do usuário)
+- **API simulada:** JSON estático ([match.json](public/match.json)), seguindo o formato do desafio ([arquivo base](https://drive.google.com/file/d/1-H3zGxtHU6eyfasjAXnKx1JwhS_nEejg/view?usp=sharing))
+
+---
+
+## 💡 Contexto
+
+O projeto simula a cobertura de um jogo de futebol, permitindo ao torcedor acompanhar em tempo real os eventos do jogo, com interface clara, cronômetro, lista de eventos e filtros.
+
+---
+
+
+## 📋 Funcionalidades
+
+- **Relógio do jogo:** Cronômetro entre 0 e 90 minutos, com controle manual (iniciar, pausar, resetar)
+- **Lista de eventos:** Exibe todos os lances importantes (gol, cartão, substituição, etc.)
+- **Comentário do narrador:** Texto livre com timestamp
+- **Filtros de eventos:** Permite filtrar por tipo (gols, cartões, impedimentos, etc.)
+- **Tema escuro/claro:** Alternância automática ou manual
+- **Mobile-first:** Layout responsivo para dispositivos móveis
+- **Persistência:** Placar e progresso mantidos após refresh
+- **SEO básico:** Metadados otimizados para compartilhamento social (Open Graph/Twitter)
+---
+
+
+## 🚀 Como rodar o projeto
+
+### 1. Instale o Yarn (caso ainda não tenha)
+
+O Yarn é um gerenciador de pacotes alternativo ao npm, muito usado em projetos modernos Node.js.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install -g yarn
+```
+> Isso instala o Yarn globalmente na sua máquina.
+
+---
+
+### 2. Clone o repositório
+
+```bash
+git clone https://github.com/seu-usuario/lance-live-match.git
+cd lance-live-match
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Instale as dependências
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+yarn install
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+### 4. Rode o projeto em modo desenvolvimento
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+yarn dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+### 5. Acesse no navegador
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Abra [http://localhost:3000] para ver o projeto rodando.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 📦 Estrutura do Projeto
+
+```
+src/
+  app/
+    components/      # Componentes de UI (Scoreboard, EventList, etc.)
+    hooks/           # Hooks customizados (useFetchMatch, useMatchClock, etc.)
+    store/           # Zustand stores (placar, eventos, etc.)
+    types/           # Tipos TypeScript
+  public/
+    match.json       # Dados simulados do jogo
+    icons/           # Ícones SVG para eventos
+```
+
+---
+
+## 📝 O que foi feito
+
+- [x] Cobertura lance a lance com cronômetro e eventos
+- [x] Filtros de eventos
+- [x] Persistência local do placar
+- [x] Tema escuro/claro
+- [x] SEO básico e preview social
+- [x] Mobile-first
+
+## ❌ O que faltou 
+
+- [ ] Transformar filtros em dropdown buttons
+- [ ] ReplayControls com controle de velocidade da simulação
+- [ ] Possibilidade de selecionar mais de 1 filtro por vez   
+- [ ] Análise de eventos mais robusta
+- [ ] Logo dos times sendo exibida junto com o evento
+- [ ] Melhor estilização para telas maiores
+- [ ] Integração com WebSocket para eventos em tempo real
+- [ ] Suporte a múltiplas partidas
+- [ ] Animações e transições mais sofisticadas
+- [ ] Pagina de dados e estatísticas do jogo 
+- [ ] Painel administrativo para inserir eventos ao vivo
+- [ ] Testes automatizados (Jest/Cypress)
+
+## 🚀 Melhorias de Performance
+
+- [ ] **React.memo** para componentes que não mudam frequentemente (MatchInfo, Scoreboard)
+- [ ] **useMemo** para cálculos pesados como `groupEventsByPeriod` e `getActionLabel`
+- [ ] **useCallback** para funções passadas como props
+- [ ] Implementar **react-window** ou **react-virtualized** para a EventList
+- [ ] Renderizar apenas eventos visíveis na viewport
+- [ ] Melhorar performance com muitas narrações
+- [ ] Lazy load de componentes pesados
+- [ ] Code splitting por rotas (quando implementar múltiplas partidas)
+- [ ] Otimização de imports
+---
+
+##  💻 Sobre o desenvolvimento.
+
+Este projeto em particular foi desenvolvido totalmente fora da zona de conforto, na casa da sogra, sem monitor e sem um espaço dedicado para trabalhar. Fiz o que eu pude com o que eu tinha. Espero que fique satisfeito!
+
+#### 1 - Análise do problema
+* Analisei cuidadosamente o desafio técnico, os requisitos funcionais e técnicos, e o contexto de uso (portal esportivo, experiência do usuário, performance).
+* Estudei o arquivo de dados fornecido e as regras de negócio para cobertura lance a lance.
+#### 2 - Planejamento da lógica
+* Identifiquei as principais funcionalidades: cronômetro, lista de eventos, filtros, placar, persistência local e SEO.
+* Pensei na melhor forma de estruturar o fluxo de dados e a interação entre os componentes.
+#### 3 - Divisão em pequenas tarefas
+* Quebrei o projeto em etapas menores, como:
+* Montar a estrutura do projeto Next.js
+* Criar componentes principais (Scoreboard, EventList, Clock, etc.)
+* Implementar hooks customizados para lógica de negócio
+* Integrar o Zustand para gerenciamento de estado
+* Adicionar persistência local e tema escuro/claro
+* Otimizar SEO e responsividade
+#### 4 - Pra finalizar
+Testei cada parte individualmente, ajustando a UX e a performance.
+Refatorei componentes para melhor legibilidade e reuso.
+
+![Tela principal do projeto](./public/lighthouse.png)
+
+
+![Vercel Speed Insight](./public/vercel-speedinsight.png)
+
+---
+
+## 🚨 Documentação em breve!
+
+A documentação detalhada deste projeto será publicada em breve.
+
+---
