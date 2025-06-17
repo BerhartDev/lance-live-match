@@ -58,6 +58,7 @@ export const useMatchClock = () => {
 
       if (isEndOfGame()) {
         console.log('🏁 Fim de Jogo detectado. Parando o clock.');
+        setPeriod(5)
         setStatus('finished');
         clearInterval(interval);
       }

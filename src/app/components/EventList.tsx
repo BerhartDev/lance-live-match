@@ -119,7 +119,7 @@ export default function EventList() {
 
       {/* Lista de Eventos Agrupados */}
       {filteredEvents.length > 0 ? (
-        <div className="space-y-6">
+        <div className="font-arquiba space-y-6">
           {groupEventsByPeriod(filteredEvents).map(([period, events]) => (
             <div key={period} className="space-y-2">
               <ul className="space-y-2">
@@ -132,7 +132,7 @@ export default function EventList() {
                     >
                       <div className="flex flex-col items-center text-center pt-1 w-16">
 
-                        <span className="text-sm text-gray-500 dark:text-gray-400">{event.moment}&apos;&apos;</span>
+                        <span className="text-xl text-black dark:text-white">{event.moment}&apos;&apos;</span>
                       </div>
                       <div className={`flex-1 p-3 rounded-lg ${actionInfo ? 'bg-gray-100 dark:bg-zinc-800' : ''}`}>
                         {actionInfo && (

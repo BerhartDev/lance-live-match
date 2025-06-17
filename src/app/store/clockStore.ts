@@ -9,7 +9,6 @@ type ClockStore = {
   status: MatchStatus;
   startClock: () => void;
   startFirstHalf: () => void;
-  startSecondHalf: () => void;
   stopClock: () => void;
   resetClock: () => void;
   advanceMinute: () => void;
@@ -27,14 +26,6 @@ export const useClockStore = create<ClockStore>()(
       startFirstHalf: () => {
         set({
           currentPeriod: 2, // Primeiro Tempo
-          currentMinute: 0,
-          status: 'running',
-        });
-      },
-
-      startSecondHalf: () => {
-        set({
-          currentPeriod: 4, // Segundo Tempo
           currentMinute: 0,
           status: 'running',
         });

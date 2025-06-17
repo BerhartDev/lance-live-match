@@ -9,7 +9,7 @@ export default function MatchInfo() {
   if (!match) return <div> Carregando informações da partida...</div>;
 
   return (
-    <div className="flex align-center dark:text-white">
+    <div className="flex align-center text-center dark:text-white">
       <div className="text-sm text-gray-700 dark:text-white">
         <div>{match.championship.name}</div>
         <div>{match.stadium.name} - {match.stadium.city}</div>
