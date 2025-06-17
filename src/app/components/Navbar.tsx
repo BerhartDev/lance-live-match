@@ -6,7 +6,7 @@ import ThemeToggle from '@/theme/ThemeToggle';
 
 export default function Navbar() {
     return (
-        <nav className="fixed w-full h-16 flex items-center justify-between p-4 border-b bg-white dark:bg-zinc-900">
+        <nav className="fixed z-20 w-full h-16 flex items-center justify-between p-4 border-b bg-white dark:bg-zinc-900">
             <Link href="/">
                 <div className="relative h-10 w-32">
                     <Image
