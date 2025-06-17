@@ -30,12 +30,11 @@ export default function EventList() {
     const actionLower = action.toLowerCase();
 
     switch (true) {
-      case actionLower.includes('gol'):
+      case actionLower===('gol'):
         return { iconPath: '/icons/Gol.svg', label: 'Gol' };
+      case actionLower.includes('cartão vermelho') || actionLower.includes('cartao vermelho'):
+        return { emoji: '🟥', label: 'Cartão Vermelho' };
       case actionLower.includes('cartão') || actionLower.includes('cartao'):
-        if (actionLower.includes('vermelho')) {
-          return { iconPath: '/icons/Cartao_amarelo.svg', label: 'Cartão Vermelho' };
-        }
         return { iconPath: '/icons/Cartao_amarelo.svg', label: 'Cartão Amarelo' };
       case actionLower.includes('impedimento'):
         return { emoji: '🚫', label: 'Impedimento' };
@@ -43,10 +42,16 @@ export default function EventList() {
         return { emoji: '🎯', label: 'Pênalti' };
       case actionLower.includes('fim de jogo'):
         return { iconPath: '/icons/Apito.svg', label: 'Fim de Jogo' };
-      case actionLower.includes('início'):
-        return { iconPath: '/icons/Apito.svg', label: 'Início' };
       case actionLower.includes('intervalo'):
-        return { iconPath: '/icons/Apito.svg', label: 'Intervalo' };
+        return { iconPath: '/icons/Intervalo.svg', label: 'Intervalo' };
+      case actionLower.includes('começo de jogo') || actionLower.includes('começo do segundo tempo') || actionLower.includes('início'):
+        return { iconPath: '/icons/Apito.svg', label: 'Início' };
+      case actionLower.includes('substituição'):
+        return { iconPath: '/icons/Substituicao.svg', label: 'Substituição' };
+      case actionLower.includes('atendimento médico'):
+        return { iconPath: '/icons/Atendimento_medico.svg', label: 'Atendimento Médico' };
+      case actionLower.includes('defesa do goleiro'):
+        return { iconPath: '/icons/Defesa_do_goleiro.svg', label: 'Defesa do Goleiro' };
       default:
         return null;
     }
