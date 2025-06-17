@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     url: 'https://lance-live-match.vercel.app/',
     images: [
       {
-        url: '/logo-white.svg',
+        url: '/logo-og.png',
         width: 1200,
         height: 630,
         alt: 'Logo LANCE!',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Partidas LANCE! a LANCE!',
     description: 'Assista partidas de futebol em tempo real LANCE!',
-    images: ['/logo-white.svg'],
+    images: ['/logo-og.png'],
   },
 };
 
