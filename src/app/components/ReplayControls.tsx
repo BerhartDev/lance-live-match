@@ -17,6 +17,7 @@ export default function ReplayControls() {
   const handlePlay = () => {
     if (currentPeriod === 5) {
       resetClock();
+      resetScore();
       startFirstHalf();
       return;
     }

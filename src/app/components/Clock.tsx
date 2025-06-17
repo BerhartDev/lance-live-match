@@ -48,7 +48,7 @@ export default function Clock() {
   };
 
   return (
-    <div className="pt-20 px-3 bg-gray-50 flex flex-col items-center gap-1 w-fit dark:bg-zinc-900">
+    <div className="pt-20 px-3 flex flex-col items-center gap-1 w-fit dark:bg-zinc-900">
       {currentPeriod !== 5 && status === 'running' && (
         <div className="text-md font-medium text-white">
           <LiveIndicator />

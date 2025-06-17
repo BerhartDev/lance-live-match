@@ -58,7 +58,7 @@ export const useFilteredEvents = (
       const action = event.important_action.toLowerCase();
       switch (selectedAction) {
         case 'gol':
-          return action.includes('gol');
+          return action === 'gol';
         case 'cartao':
           return action.includes('cartão') || action.includes('cartao');
         case 'impedimento':
