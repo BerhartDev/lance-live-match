@@ -18,6 +18,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://lance-live-match.vercel.app'),
   title: 'Partidas LANCE! a LANCE!',
   description: 'Assista partidas de futebol em tempo real LANCE!',
   openGraph: {
