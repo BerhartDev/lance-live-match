@@ -18,11 +18,11 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: 'Tempo Real - Partidas LANCE! a LANCE!',
-  description: 'Veja o replay lance a lance de partidas de futebol no Tempo Real LANCE!',
+  title: 'Partidas LANCE! a LANCE!',
+  description: 'Assista partidas de futebol em tempo real LANCE!',
   openGraph: {
-    title: 'Tempo Real - Partidas LANCE! a LANCE!',
-    description: 'Veja o replay lance a lance de partidas de futebol no Tempo Real LANCE!',
+    title: 'Partidas LANCE! a LANCE!',
+    description: 'Assista partidas de futebol em tempo real LANCE!',
     url: 'https://lance-live-match.vercel.app/',
     images: [
       {
@@ -36,8 +36,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Tempo Real - Partidas LANCE! a LANCE!',
-    description: 'Veja o replay lance a lance de partidas de futebol no Tempo Real LANCE!',
+    title: 'Partidas LANCE! a LANCE!',
+    description: 'Assista partidas de futebol em tempo real LANCE!',
     images: ['/logo-white.svg'],
   },
 };
