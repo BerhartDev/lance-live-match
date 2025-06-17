@@ -1,3 +1,4 @@
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next'
 import "./globals.css";
 import { ThemeProvider } from '@/theme/ThemeProvider'
@@ -14,7 +15,10 @@ export default function RootLayout({
 }) {
   return <html lang="pt-BR">
     <body>
-    <ThemeProvider>{children}</ThemeProvider>
+      <ThemeProvider>
+        {children}
+        <SpeedInsights />
+      </ThemeProvider>
     </body>
   </html>;
 }
