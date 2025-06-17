@@ -144,7 +144,7 @@ src/
 
 ##  💻 Sobre o desenvolvimento.
 
-Este projeto em particular foi desenvolvido totalmente fora da zona de conforto, na casa da sogra, sem monitor e sem um espaço dedicado para trabalhar. Fiz o que eu pude com o que eu tinha. Espero que fique satisfeito!
+Este projeto em particular foi desenvolvido totalmente fora da zona de conforto, na casa da sogra, sem monitor e sem um espaço dedicado para trabalhar. Fiz o que eu pude com o que eu tinha. Espero que você goste! :)
 
 #### 1 - Análise do problema
 * Analisei cuidadosamente o desafio técnico, os requisitos funcionais e técnicos, e o contexto de uso (portal esportivo, experiência do usuário, performance).
