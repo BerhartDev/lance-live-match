@@ -24,21 +24,6 @@ export default function EventList() {
     return Object.entries(groups).sort(([a], [b]) => Number(b) - Number(a));
   };
 
-  const getPeriodLabel = (period: number) => {
-    switch (period) {
-      case 1:
-        return '🟡 Pré-jogo';
-      case 2:
-        return '🔴 Primeiro Tempo';
-      case 3:
-        return '⚪ Intervalo';
-      case 4:
-        return '🔵 Segundo Tempo';
-      default:
-        return '🏁 Encerrado';
-    }
-  };
-
   // Função para obter o emoji e label da ação importante
   const getActionLabel = (action: string | null | undefined) => {
     if (!action) return null;
@@ -75,17 +60,17 @@ export default function EventList() {
     { id: 'segundo_tempo', label: '2º Tempo' },
   ];
 
-  const actionFilters: { id: ActionTypeFilter; label: string; emoji: string }[] = [
-    { id: 'all', label: 'Todas Ações', emoji: '📋' },
-    { id: 'gol', label: 'Gols', emoji: '⚽' },
-    { id: 'cartao', label: 'Cartões', emoji: '🟨' },
-    { id: 'impedimento', label: 'Impedimentos', emoji: '🚫' },
-    { id: 'penalti', label: 'Pênaltis', emoji: '🎯' },
+  const actionFilters: { id: ActionTypeFilter; label: string;}[] = [
+    { id: 'all', label: 'Todas Ações' },
+    { id: 'gol', label: 'Gols'},
+    { id: 'cartao', label: 'Cartões' },
+    { id: 'impedimento', label: 'Impedimentos' },
+    { id: 'penalti', label: 'Pênaltis' },
   ];
 
   return (
-    <div className="p-4 bg-white dark:bg-zinc-900">
-      <h2 className="text-lg font-bold mb-3 dark:text-white">LANCE A LANCE</h2>
+    <div className="p-4 bg-white dark:bg-zinc-900 dark:text-white w-full max-w-screen-lg">
+      <h2 className="text-lg font-bold mb-3 dark:text-white">LANCE! A LANCE!</h2>
 
       {/* Filtros de Período */}
       <div className="mb-2 flex flex-wrap gap-2">
@@ -112,7 +97,7 @@ export default function EventList() {
               selectedAction === filter.id ? 'bg-orange-500 text-white' : 'bg-gray-100 hover:bg-gray-200 dark:bg-zinc-800 dark:hover:bg-zinc-700'
             }`}
           >
-            {filter.emoji} {filter.label}
+            {filter.label}
           </button>
         ))}
       </div>
@@ -151,9 +136,7 @@ export default function EventList() {
                   );
                 })}
               </ul>
-              <h3 className="text-md font-semibold text-gray-700 dark:text-gray-300 pb-1">
-                {getPeriodLabel(Number(period))}
-              </h3>
+                <hr/>
             </div>
           ))}
         </div>
