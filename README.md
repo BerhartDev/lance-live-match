@@ -164,9 +164,8 @@ Este projeto em particular foi desenvolvido totalmente fora da zona de conforto,
 Testei cada parte individualmente, ajustando a UX e a performance.
 Refatorei componentes para melhor legibilidade e reuso.
 
+![Pagespeed Performance](./public/pagespeed.png)
 ![Lighthouse Performance](./public/lighthouse.png)
-
-
 ![Vercel Speed Insight](./public/vercel-speedinsight.png)
 
 ---
