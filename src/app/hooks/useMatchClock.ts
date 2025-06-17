@@ -59,7 +59,7 @@ export const useMatchClock = () => {
         setStatus('finished');
         clearInterval(interval);
       }
-    }, 100);
+    }, 1000);
 
     return () => clearInterval(interval);
   }, [

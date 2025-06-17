@@ -17,7 +17,7 @@ const poppins = Poppins({
   variable: '--font-poppins',
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Partidas LANCE! a LANCE!',
   description: 'Assista partidas de futebol em tempo real LANCE!',
   openGraph: {
