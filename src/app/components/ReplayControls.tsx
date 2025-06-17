@@ -18,6 +18,7 @@ export default function ReplayControls() {
     if (currentPeriod === 5) {
       resetClock();
       resetScore();
+      resetProcessed();
       startFirstHalf();
       return;
     }
