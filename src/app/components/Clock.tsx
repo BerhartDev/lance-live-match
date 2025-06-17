@@ -9,35 +9,49 @@ export default function Clock() {
 
   const formatMatchTime = (minutes: number) => {
     const min = minutes.toString().padStart(2, '0');
-    const sec = '00'; // Se quiser no futuro podemos controlar segundos também
-    return `${min}:${sec}`;
+    return `${min}'`;
   };
 
   const getPeriodLabel = (period: number) => {
     switch (period) {
       case 1:
-        return '🟡 Pré-jogo';
+        return 'Em breve';
       case 2:
-        return '🔴 Primeiro Tempo';
+        return '1º Tempo';
       case 3:
-        return '⚪ Intervalo';
+        return 'Intervalo';
       case 4:
-        return '🔵 Segundo Tempo';
+        return '2º Tempo';
       default:
-        return '🏁 Encerrado';
+        return 'Partida encerrada';
+    }
+  };
+
+  const getPeriodBgClass = (period: number) => {
+    switch (period) {
+      case 1:
+        return 'bg-green-700';
+      case 2:
+        return 'bg-green-700';
+      case 3:
+        return 'bg-yellow-500';
+      case 4:
+        return 'bg-green-700';
+      default:
+        return 'bg-black-700';
     }
   };
 
   return (
-    <div className="p-3 bg-gray-5 flex flex-col gap-1 w-fit dark:bg-zinc-900">
-      <div className="text-sm text-gray-700 font-semibold dark:text-white">
-        Período: {getPeriodLabel(currentPeriod)}
-      </div>
-      <div className="text-xl font-bold text-black dark:text-white">
-        {formatMatchTime(currentMinute)}
-      </div>
+    <div className="p-3 bg-gray-5 flex flex-col items-center gap-1 w-fit dark:bg-zinc-900">
       <div className={`text-xs font-medium ${status === 'running' ? 'text-green-600' : 'text-gray-500'}`}>
         Status: {status}
+      </div>
+      <div className="p-2 text-4xl text-black dark:text-white">
+        {formatMatchTime(currentMinute)}
+      </div>
+      <div className={`px-4 py-1 text-sm rounded-full ${getPeriodBgClass(currentPeriod)} text-white font-semibold flex items-center justify-center`}>
+        {getPeriodLabel(currentPeriod)}
       </div>
     </div>
   );

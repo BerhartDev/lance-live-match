@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useFilteredEvents, MatchPeriodFilter, ActionTypeFilter } from '@/app/hooks/useFilteredEvents';
+import Image from 'next/image';
 
 export default function EventList() {
   const [selectedPeriod, setSelectedPeriod] = useState<MatchPeriodFilter>('all');
@@ -42,32 +43,28 @@ export default function EventList() {
   const getActionLabel = (action: string | null | undefined) => {
     if (!action) return null;
     const actionLower = action.toLowerCase();
-    
-    if (actionLower.includes('gol')) {
-      return { emoji: '⚽', label: 'Gol' };
+
+    switch (true) {
+      case actionLower.includes('gol'):
+        return { iconPath: '/icons/Gol.svg', label: 'Gol' };
+      case actionLower.includes('cartão') || actionLower.includes('cartao'):
+        if (actionLower.includes('vermelho')) {
+          return { iconPath: '/icons/Cartao_amarelo.svg', label: 'Cartão Vermelho' };
+        }
+        return { iconPath: '/icons/Cartao_amarelo.svg', label: 'Cartão Amarelo' };
+      case actionLower.includes('impedimento'):
+        return { emoji: '🚫', label: 'Impedimento' };
+      case actionLower.includes('pênalti') || actionLower.includes('penalti'):
+        return { emoji: '🎯', label: 'Pênalti' };
+      case actionLower.includes('fim de jogo'):
+        return { iconPath: '/icons/Apito.svg', label: 'Fim de Jogo' };
+      case actionLower.includes('início'):
+        return { iconPath: '/icons/Apito.svg', label: 'Início' };
+      case actionLower.includes('intervalo'):
+        return { iconPath: '/icons/Apito.svg', label: 'Intervalo' };
+      default:
+        return null;
     }
-    if (actionLower.includes('cartão') || actionLower.includes('cartao')) {
-      if (actionLower.includes('vermelho')) {
-        return { emoji: '🟥', label: 'Cartão Vermelho' };
-      }
-      return { emoji: '🟨', label: 'Cartão Amarelo' };
-    }
-    if (actionLower.includes('impedimento')) {
-      return { emoji: '🚫', label: 'Impedimento' };
-    }
-    if (actionLower.includes('pênalti') || actionLower.includes('penalti')) {
-      return { emoji: '🎯', label: 'Pênalti' };
-    }
-    if (actionLower.includes('fim de jogo')) {
-      return { emoji: '🏁', label: 'Fim de Jogo' };
-    }
-    if (actionLower.includes('início')) {
-      return { emoji: '▶️', label: 'Início' };
-    }
-    if (actionLower.includes('intervalo')) {
-      return { emoji: '⏸️', label: 'Intervalo' };
-    }
-    return null;
   };
 
   const periodFilters: { id: MatchPeriodFilter; label: string }[] = [
@@ -88,7 +85,7 @@ export default function EventList() {
 
   return (
     <div className="p-4 bg-white dark:bg-zinc-900">
-      <h2 className="text-lg font-bold mb-2 dark:text-white">📰 Eventos Filtrados</h2>
+      <h2 className="text-lg font-bold mb-3 dark:text-white">LANCE A LANCE</h2>
 
       {/* Filtros de Período */}
       <div className="mb-2 flex flex-wrap gap-2">
@@ -125,34 +122,38 @@ export default function EventList() {
         <div className="space-y-6">
           {groupEventsByPeriod(filteredEvents).map(([period, events]) => (
             <div key={period} className="space-y-2">
-              <h3 className="text-md font-semibold text-gray-700 dark:text-gray-300 border-b pb-1">
-                {getPeriodLabel(Number(period))}
-              </h3>
               <ul className="space-y-2">
                 {events.map((event) => {
                   const actionInfo = event.important_action ? getActionLabel(event.important_action) : null;
                   return (
                     <li 
                       key={event.id} 
-                      className={`border-b pb-1 dark:text-white ${
-                        actionInfo 
-                          ? 'bg-orange-50 dark:bg-orange-900/20 px-2 py-1 rounded' 
-                          : ''
-                      }`}
+                      className="flex items-start gap-4 py-2 last:border-b-0"
                     >
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm text-gray-500 dark:text-gray-400">{event.moment}&apos;</span>
-                        {actionInfo && (
-                          <span className="px-2 py-0.5 text-xs rounded bg-orange-100 dark:bg-orange-800/30 text-orange-800 dark:text-orange-200">
-                            {actionInfo.emoji} {actionInfo.label}
-                          </span>
-                        )}
+                      <div className="flex flex-col items-center text-center pt-1 w-16">
+
+                        <span className="text-sm text-gray-500 dark:text-gray-400">{event.moment}&apos;&apos;</span>
                       </div>
-                      <span className={`block ${actionInfo ? 'mt-1' : ''}`}>{event.text}</span>
+                      <div className={`flex-1 p-3 rounded-lg ${actionInfo ? 'bg-gray-100 dark:bg-zinc-800' : ''}`}>
+                        {actionInfo && (
+                          <div className="font-bold mb-1 dark:text-white flex items-center">
+                            {actionInfo.iconPath ? (
+                              <Image src={actionInfo.iconPath} alt={actionInfo.label} width={20} height={20} className="mr-2" />
+                            ) : actionInfo.emoji ? (
+                              <span className="text-xl mr-2">{actionInfo.emoji}</span>
+                            ) : null}
+                            {actionInfo.label.toUpperCase()}
+                          </div>
+                        )}
+                        <span className="block text-sm dark:text-white">{event.text}</span>
+                      </div>
                     </li>
                   );
                 })}
               </ul>
+              <h3 className="text-md font-semibold text-gray-700 dark:text-gray-300 pb-1">
+                {getPeriodLabel(Number(period))}
+              </h3>
             </div>
           ))}
         </div>

@@ -23,11 +23,11 @@ export default function ReplayControls() {
   };
 
   return (
-    <div className="flex gap-2">
+    <div className="fixed bottom-0 left-0 right-0 w-full flex justify-center p-4  dark:bg-zinc-900 shadow-lg">
       {status !== 'running' && (
         <button
           onClick={handlePlay}
-          className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
+          className="w-1/2 px-2 py-2 bg-green-600 text-white  hover:bg-green-700 transition-colors"
         >
           ▶️ Iniciar
         </button>
@@ -36,7 +36,7 @@ export default function ReplayControls() {
       {status === 'running' && (
         <button
           onClick={stopClock}
-          className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition-colors"
+          className="w-1/2 py-2 bg-yellow-500 text-white  hover:bg-yellow-600 transition-colors"
         >
           ⏸️ Pausar
         </button>
@@ -44,7 +44,7 @@ export default function ReplayControls() {
 
       <button
         onClick={() => { resetClock(); resetScore(); resetProcessed();}}
-        className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
+        className="w-1/2 px-4 py-2 bg-red-600 text-white  hover:bg-red-700 transition-colors"
       >
         🔄 Resetar
       </button>
