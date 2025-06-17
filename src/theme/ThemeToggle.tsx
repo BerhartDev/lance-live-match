@@ -1,6 +1,7 @@
 'use client'
 
 import { useTheme } from './ThemeProvider'
+import Image from 'next/image'
 
 export default function ThemeToggle() {
   const { theme, toggleTheme } = useTheme()
@@ -8,10 +9,14 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="fixed top-4 right-4 p-2 rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
+      className={`relative p-2 rounded-full transition-colors ${theme === 'dark' ? 'bg-white text-black hover:bg-gray-100' : 'bg-black text-white hover:bg-zinc-800'}`}
       aria-label="Toggle theme"
     >
-      {theme === 'dark' ? '🌞' : '🌙'}
+      {theme === 'dark' ? (
+        <Image src="/icons/sun.svg" alt="Light mode" width={24} height={24} />
+      ) : (
+        <Image src="/icons/moon.svg" alt="Dark mode" width={24} height={24} />
+      )}
     </button>
   )
 } 

@@ -18,7 +18,7 @@ export default function HomePage() {
   useProcessImportantEvents();
 
   return (  
-    <main className="min-h-screen flex flex-col items-center gap-4 bg-white dark:bg-zinc-900 pb-24">
+    <main className="min-h-screen flex flex-col items-center  bg-white dark:bg-zinc-900 pb-24">
       <Navbar />
       <Clock />
       <ScoreBoard />
