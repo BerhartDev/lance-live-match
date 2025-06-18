@@ -88,6 +88,19 @@ Abra [http://localhost:3000] para ver o projeto rodando.
 
 ---
 
+### 6. Rodando com Docker
+
+Você pode rodar o projeto em ambiente de produção usando Docker:
+
+```bash
+docker build -t lance-live-match .
+docker run -p 3000:3000 lance-live-match
+```
+
+Acesse [http://localhost:3000](http://localhost:3000) no navegador.
+
+---
+
 ## 📦 Estrutura do Projeto
 
 ```

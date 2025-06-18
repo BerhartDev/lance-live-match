@@ -53,8 +53,8 @@ export default function RootLayout({
       <ThemeProvider>
         {children}
       </ThemeProvider>
-      <SpeedInsights />
-      <Analytics/>
+      {process.env.NODE_ENV === "production" && <SpeedInsights />}
+      {process.env.NODE_ENV === "production" && <Analytics />}
     </body>
   </html>;
 }
