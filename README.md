@@ -60,7 +60,7 @@ npm install -g yarn
 ### 2. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/lance-live-match.git
+git clone https://github.com/BerhartDev/lance-live-match.git
 cd lance-live-match
 ```
 
