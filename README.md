@@ -129,16 +129,16 @@ src/
 
 ## ❌ O que faltou 
 
-- [ ] ReplayControls com controle de velocidade da simulação
-- [ ] Possibilidade de selecionar mais de 1 filtro por vez   
 - [ ] Análise de eventos mais robusta
-- [ ] Logo dos times sendo exibida junto com o evento
-- [ ] Melhor estilização para telas maiores
 - [ ] Pagina de dados e estatísticas do jogo 
+- [ ] Logo dos times sendo exibida junto com o evento
+- [ ] Possibilidade de selecionar mais de 1 filtro por vez   
+- [ ] ReplayControls com controle de velocidade da simulação
 - [ ] Testes automatizados (Jest/Cypress)
-- [ ] Integração com WebSocket para eventos em tempo real
 - [ ] Suporte a múltiplas partidas
+- [ ] Integração com WebSocket para eventos em tempo real
 - [ ] Animações e transições mais sofisticadas
+- [ ] Melhor estilização para telas maiores
 
 ## 🚀 Melhorias de Performance
 
