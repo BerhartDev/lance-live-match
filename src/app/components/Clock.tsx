@@ -49,12 +49,12 @@ export default function Clock() {
 
   return (
     <div className="pt-20 px-3 flex flex-col items-center gap-1 w-fit dark:bg-zinc-900">
-      {currentPeriod !== 5 && status === 'running' && (
+      {currentPeriod !== 1 && currentPeriod !== 5 && status === 'running' && (
         <div className="text-md font-medium text-white">
           <LiveIndicator />
         </div>
       )}
-      {currentPeriod !== 5 && (
+      {currentPeriod !== 1 && currentPeriod !== 5 && (
         <div className="p-2 text-4xl text-black dark:text-white">
           {formatMatchTime(currentMinute)}
         </div>
