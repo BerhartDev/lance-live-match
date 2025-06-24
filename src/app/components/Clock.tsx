@@ -13,6 +13,7 @@ export default function Clock() {
     return `${min}"`;
   };
 
+  // TODO: Isolate and merge logic into a single getPeriodInfo function.
   const getPeriodLabel = (period: number) => {
     switch (period) {
       case 1:

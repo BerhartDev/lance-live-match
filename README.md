@@ -125,21 +125,20 @@ src/
 - [x] Tema escuro/claro
 - [x] SEO básico e preview social
 - [x] Mobile-first
+- [x] Transformar filtros em dropdown buttons
 
 ## ❌ O que faltou 
 
-- [ ] Transformar filtros em dropdown buttons
 - [ ] ReplayControls com controle de velocidade da simulação
 - [ ] Possibilidade de selecionar mais de 1 filtro por vez   
 - [ ] Análise de eventos mais robusta
 - [ ] Logo dos times sendo exibida junto com o evento
 - [ ] Melhor estilização para telas maiores
+- [ ] Pagina de dados e estatísticas do jogo 
+- [ ] Testes automatizados (Jest/Cypress)
 - [ ] Integração com WebSocket para eventos em tempo real
 - [ ] Suporte a múltiplas partidas
 - [ ] Animações e transições mais sofisticadas
-- [ ] Pagina de dados e estatísticas do jogo 
-- [ ] Painel administrativo para inserir eventos ao vivo
-- [ ] Testes automatizados (Jest/Cypress)
 
 ## 🚀 Melhorias de Performance
 
@@ -152,7 +151,6 @@ src/
 - [ ] Lazy load de componentes pesados
 - [ ] Code splitting por rotas (quando implementar múltiplas partidas)
 - [ ] Otimização de imports
-- [ ] Muitas outras
 ---
 
 ##  💻 Sobre o desenvolvimento.
