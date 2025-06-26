@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/next"
 import { Krub, Poppins } from 'next/font/google';
 import "./globals.css";
 import { ThemeProvider } from '@/theme/ThemeProvider'
+import Navbar from '@/app/components/Navbar';
 import type { Metadata } from 'next';
 
 const krub = Krub({
@@ -51,6 +52,7 @@ export default function RootLayout({
   return <html lang="pt-BR">
     <body className={`${krub.variable} ${poppins.variable}`}>
       <ThemeProvider>
+        <Navbar />
         {children}
       </ThemeProvider>
       {process.env.NODE_ENV === "production" && <SpeedInsights />}
